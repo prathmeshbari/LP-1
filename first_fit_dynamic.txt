@@ -1,0 +1,71 @@
+# Python3 implementation of First-Fit algorithm
+
+# Function to allocate memory to
+# blocks as per First fit algorithm
+def firstFit(blockSize, m, processSize, n):
+
+    # Stores block id of the
+    # block allocated to a process
+    allocation = [-1] * n
+
+    # Initially no block is assigned to any process
+
+    # pick each process and find suitable blocks
+    # according to its size and assign to it
+    # n is len of processSize and m is block size
+    for i in range(n):
+        for j in range(m):
+            # 600>=212
+            if blockSize[j] >= processSize[i]:
+
+
+                # allocate block j to p[i] process
+                allocation[i] = j
+
+                # Reduce available memory in this block.
+                blockSize[j] -= processSize[i]
+
+                break
+
+    print(" Process No. Process Size	 Block no.")
+    for i in range(n):
+        print(" ", i + 1, "		 ", processSize[i],
+              "		 ", end=" ")
+        if allocation[i] != -1:
+            print(allocation[i] + 1)
+        else:
+            print("Not Allocated")
+
+
+# # Driver code
+# if __name__ == '_main_':
+print("Enter no. blocksize")
+# a=5
+a=int(input())
+# Enter 5 
+print("Enter",a,"blocksize elements")
+# define array
+blockSize=[]
+for i in range(a):
+   blockSize.append(int(input()))
+print("Blocksize is:",blockSize)
+
+# blockSize = [100, 200, 400, 300, 500]
+
+print("Enter no. blocksize")
+# a=5
+b=int(input())
+# Enter 5 
+print("Enter",b,"blocksize elements")
+# define array
+processSize=[]
+for i in range(a):
+   processSize.append(int(input()))
+print("processSize  is:",processSize)
+
+# processSize = [212, 416, 678, 110,512]
+m = len(blockSize)
+n = len(processSize)
+firstFit(blockSize, m, processSize, n)
+
+# This code is contributed by PranchalK
